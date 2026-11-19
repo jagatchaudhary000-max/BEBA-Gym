@@ -19,8 +19,9 @@ There are two ways to get the APK. Pick one.
 3. Open the **Actions** tab. The "Build BEBA APK" job starts
    by itself and takes about 3–5 minutes. If it doesn't start, click it, then
    **Run workflow**.
-4. When it shows a green tick, open the run, scroll to **Artifacts**,
-   and download **BEBA-apk**. Unzip it to get `BEBA.apk`.
+4. When it shows a green tick, open the repository's **Releases**
+   (right-hand side of the main page) and download **BEBA.apk**. You can
+   do this straight from your phone.
 
 ## Option B: Android Studio
 

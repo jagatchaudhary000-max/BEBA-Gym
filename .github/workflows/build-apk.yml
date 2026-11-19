@@ -1,23 +1,27 @@
-# Builds BEBA.apk on GitHub's servers with Google's official Android tools.
-# Runs on every push, or by hand from the Actions tab ("Run workflow").
+# Builds BEBA.apk on GitHub's servers with Google's official Android tools
+# (the Android SDK comes preinstalled on GitHub's Ubuntu machines).
+# Runs on every push to main, or by hand from the Actions tab ("Run workflow").
+# Each successful build is published under "Releases" for easy download.
 name: Build BEBA APK
 
 on:
   push:
+    branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "17"
-
-      - uses: android-actions/setup-android@v3
 
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -32,3 +36,11 @@ jobs:
         with:
           name: BEBA-apk
           path: BEBA.apk
+
+      - name: Publish to Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "build-${{ github.run_number }}" BEBA.apk \
+            --title "BEBA build ${{ github.run_number }}" \
+            --notes "Download BEBA.apk below and open it on your Android phone to install."
