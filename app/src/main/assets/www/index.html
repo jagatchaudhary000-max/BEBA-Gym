@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<title>BEBA</title>
+<style>
+@font-face{font-family:'Inter';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:600;font-style:normal;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:700;font-style:normal;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:700;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-latin-700-normal.woff2) format('woff2')}
+</style>
+<style>
+:root{
+  --bg:#0f1115; --card:#181b22; --card2:#1f232c; --line:#2a2f3a; --text:#eceef1; --muted:#8d95a3;
+  --accent:#c6f432; --accent-ink:#141a00; --danger:#ff6161; --ok:#4ade80;
+  --r:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.4}
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:var(--text);background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom))}
+.top{display:flex;align-items:center;justify-content:space-between;margin:4px 0 16px}
+.brand{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:700;letter-spacing:.5px}
+.brand span{color:var(--accent)}
+h2{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:700;margin:22px 0 10px;letter-spacing:.3px}
+h3{margin:0;font-size:16px;font-weight:600}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.pill{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--muted)}
+.pill.ok{color:var(--ok)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.stat b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:30px;line-height:1.1}
+.stat span{font-size:12px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 16px;border-radius:12px;background:var(--card2);border:1px solid var(--line);font-weight:600}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.danger{color:var(--danger)}
+.btn.block{width:100%}
+.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
+.row{display:flex;gap:10px;align-items:center}
+.row.between{justify-content:space-between}
+.tpl{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tpl button{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-align:left}
+.tpl button b{display:block;font-size:15px}
+.tpl button span{font-size:12px;color:var(--muted)}
+nav{position:fixed;left:0;right:0;bottom:0;background:rgba(15,17,21,.96);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom);z-index:20;backdrop-filter:blur(8px)}
+nav .in{display:flex;max-width:560px;width:100%}
+nav button{flex:1;padding:10px 0 9px;font-size:11px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px}
+nav button svg{width:22px;height:22px}
+nav button.on{color:var(--accent)}
+nav .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);position:absolute;margin:-2px 0 0 18px}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px}
+.ex .hint{font-size:12px;color:var(--muted);margin:2px 0 8px}
+.sets{width:100%;border-collapse:collapse}
+.sets th{font-size:11px;font-weight:600;color:var(--muted);text-align:center;padding:4px 2px;text-transform:uppercase;letter-spacing:.5px}
+.sets td{padding:3px 2px;text-align:center}
+.sets td input{text-align:center;padding:9px 4px}
+.sets tr.done td input{background:rgba(198,244,50,.10);border-color:rgba(198,244,50,.35)}
+.chk{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card2);display:inline-flex;align-items:center;justify-content:center}
+.chk.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.x{color:var(--muted);width:30px;height:38px}
+.setno{width:28px;color:var(--muted);font-weight:600}
+.addset{width:100%;margin-top:6px;padding:9px;border-radius:10px;border:1px dashed var(--line);color:var(--muted);font-weight:600}
+.wtitle{font-size:20px;font-weight:700;background:transparent;border:0;padding:4px 0;border-bottom:1px dashed var(--line);border-radius:0}
+.timer{font-family:"Barlow Condensed",sans-serif;font-size:22px;color:var(--accent)}
+.list .item{display:flex;justify-content:space-between;align-items:center;padding:12px 2px;border-bottom:1px solid var(--line);width:100%;text-align:left}
+.list .item:last-child{border-bottom:0}
+.tag{font-size:11px;color:var(--muted);background:var(--card2);border-radius:6px;padding:2px 7px;margin-left:6px}
+.chart{width:100%;height:auto;display:block}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;scrollbar-width:none}
+.chips button{white-space:nowrap;padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px;color:var(--muted)}
+.chips button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0;width:100%;max-width:560px;max-height:88vh;overflow:auto;padding:16px 16px calc(20px + env(safe-area-inset-bottom))}
+.sheet .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 12px}
+.rest{position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom));z-index:25;display:flex;justify-content:center;padding:0 12px}
+.rest .in{max-width:536px;width:100%;background:var(--card2);border:1px solid var(--accent);border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:10px;position:relative;overflow:hidden}
+.rest .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--accent)}
+.rest b{font-family:"Barlow Condensed",sans-serif;font-size:26px;min-width:64px}
+.empty{text-align:center;padding:28px 10px;color:var(--muted)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom));background:var(--card2);border:1px solid var(--line);padding:10px 16px;border-radius:12px;z-index:60;font-size:14px;max-width:90%}
+.pr{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.pr div{background:var(--card2);border-radius:10px;padding:10px}
+.pr b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:22px}
+.pr span{font-size:11px;color:var(--muted)}
+label.f{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
+textarea{min-height:70px;resize:vertical}
+.grp{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:14px 0 4px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<nav><div class="in" id="nav"></div></nav>
+<div id="modal"></div>
+
+<script>
+const LIB = {
+  Chest:[['Bench Press','w'],['Incline Dumbbell Press','w'],['Dumbbell Bench Press','w'],['Chest Fly (Machine)','w'],['Cable Crossover','w'],['Push-up','b'],['Dips','b']],
+  Back:[['Deadlift','w'],['Pull-up','b'],['Lat Pulldown','w'],['Barbell Row','w'],['Seated Cable Row','w'],['Dumbbell Row','w'],['Back Extension','b']],
+  Legs:[['Squat','w'],['Leg Press','w'],['Romanian Deadlift','w'],['Lunges','w'],['Leg Extension','w'],['Leg Curl','w'],['Calf Raise','w'],['Hip Thrust','w']],
+  Shoulders:[['Overhead Press','w'],['Dumbbell Shoulder Press','w'],['Lateral Raise','w'],['Rear Delt Fly','w'],['Face Pull','w'],['Shrugs','w']],
+  Arms:[['Barbell Curl','w'],['Dumbbell Curl','w'],['Hammer Curl','w'],['Tricep Pushdown','w'],['Skull Crusher','w'],['Overhead Tricep Extension','w']],
+  Core:[['Plank','t'],['Crunches','b'],['Hanging Leg Raise','b'],['Russian Twist','b'],['Cable Crunch','w']],
+  Cardio:[['Treadmill','t'],['Cycling','t'],['Skipping','t'],['Rowing Machine','t'],['Cross Trainer','t']]
+};
+const TEMPLATES = {
+  'Push':['Bench Press','Overhead Press','Incline Dumbbell Press','Lateral Raise','Tricep Pushdown'],
+  'Pull':['Deadlift','Pull-up','Barbell Row','Face Pull','Barbell Curl'],
+  'Legs':['Squat','Romanian Deadlift','Leg Press','Leg Curl','Calf Raise'],
+  'Full Body':['Squat','Bench Press','Barbell Row','Overhead Press','Plank']
+};
+// How-to guide: [muscles worked, [steps], tip]
+const HOW = {
+  'Bench Press':['Chest, front shoulders, triceps',['Lie on the bench with eyes under the bar, feet flat. Grip a little wider than shoulders.','Lower the bar to mid-chest, elbows at about 45°.','Press up until arms are straight.'],'Keep shoulder blades squeezed together. Use a spotter for heavy sets.'],
+  'Incline Dumbbell Press':['Upper chest, shoulders',['Set the bench at 30–45°, dumbbells at chest level.','Press up until arms are straight.','Lower slowly back to chest level.'],'Too steep an incline turns it into a shoulder press.'],
+  'Dumbbell Bench Press':['Chest, triceps',['Lie flat, dumbbells at chest, palms facing forward.','Press up until arms are straight.','Lower with control until elbows are just below the bench.'],'Dumbbells give a deeper stretch than a bar, so go slow.'],
+  'Chest Fly (Machine)':['Chest',['Adjust the seat so handles are at chest height.','Bring handles together in front of you, elbows slightly bent.','Return slowly until you feel a stretch in the chest.'],'Squeeze your chest for one second when the handles meet.'],
+  'Cable Crossover':['Lower and inner chest',['Set pulleys high, step forward with a slight lean.','Pull handles down and together in an arc.','Return slowly to the start.'],'Keep elbows slightly bent and fixed the whole time.'],
+  'Push-up':['Chest, triceps, core',['Hands just wider than shoulders, body in a straight line.','Lower your chest to just above the floor.','Push back up.'],'Too hard? Do them on your knees or with hands on a bench.'],
+  'Dips':['Lower chest, triceps',['Hold the bars, arms straight, lean slightly forward.','Lower until upper arms are parallel to the floor.','Push back up.'],'Stop if your shoulders hurt. Use the assisted machine to start.'],
+  'Deadlift':['Back, glutes, hamstrings',['Bar over mid-foot, grip just outside your knees.','Flat back, chest up, push the floor away to stand tall.','Lower by pushing hips back first.'],'Never round your lower back — lower the weight if it happens.'],
+  'Pull-up':['Lats, biceps',['Hang with palms facing away, hands wider than shoulders.','Pull until your chin is over the bar.','Lower all the way down.'],'Use a band or the assisted machine until you can do 5 clean reps.'],
+  'Lat Pulldown':['Lats',['Sit with thighs under the pad, wide grip.','Pull the bar to your upper chest, elbows down.','Return slowly until arms are straight.'],"Don't lean far back or pull behind your neck."],
+  'Barbell Row':['Mid back, lats',['Hinge forward about 45°, back flat, bar hanging.','Pull the bar to your lower chest / belly.','Lower with control.'],'Keep your torso still — no jerking.'],
+  'Seated Cable Row':['Mid back',['Sit, feet on the platform, knees soft.','Pull the handle to your belly, squeeze shoulder blades.','Return until arms are straight.'],"Keep chest up and don't rock back and forth."],
+  'Dumbbell Row':['Lats, mid back',['One knee and hand on a bench, back flat.','Pull the dumbbell up to your hip.','Lower fully.'],'Think “elbow to back pocket”.'],
+  'Back Extension':['Lower back, glutes',['Hips on the pad, ankles locked in.','Lower your upper body down.','Rise until your body is in a straight line.'],"Don't over-arch at the top."],
+  'Squat':['Quads, glutes',['Bar on upper back, feet shoulder-width.','Sit hips back and down until thighs are about parallel.','Drive up through your whole foot.'],'Knees follow your toes; keep your chest up.'],
+  'Leg Press':['Quads, glutes',['Feet shoulder-width in the middle of the platform.','Lower until knees are about 90°.','Press up without locking your knees.'],'Keep your lower back flat on the pad.'],
+  'Romanian Deadlift':['Hamstrings, glutes',['Stand holding the bar, knees soft.','Push hips back; bar slides down your thighs until hamstrings stretch.','Squeeze glutes to stand up.'],'Back stays flat; bar stays close to your legs.'],
+  'Lunges':['Quads, glutes',['Stand tall holding dumbbells.','Step forward and lower until both knees are about 90°.','Push back to start and switch legs.'],'Front knee stays over the ankle.'],
+  'Leg Extension':['Quads',['Sit with the pad on your lower shins.','Straighten your legs fully.','Lower slowly.'],'Pause one second at the top.'],
+  'Leg Curl':['Hamstrings',['Pad just above your heels.','Curl heels toward your glutes.','Lower slowly.'],'Keep hips pressed into the pad.'],
+  'Calf Raise':['Calves',['Balls of your feet on a step or platform.','Rise onto your toes as high as you can.','Lower heels below the step.'],'Go slow and pause at the top and bottom.'],
+  'Hip Thrust':['Glutes',['Upper back on a bench, bar across your hips.','Drive hips up until knees-to-shoulders is a straight line.','Lower with control.'],'Put a pad on the bar and keep your chin tucked.'],
+  'Overhead Press':['Shoulders, triceps',['Bar at collarbone, grip just outside shoulders.','Press overhead until arms are straight.','Lower back to the collarbone.'],"Squeeze glutes and abs so you don't lean back."],
+  'Dumbbell Shoulder Press':['Shoulders',['Sit, dumbbells at ear height.','Press up until arms are straight.','Lower back to ear level.'],"Don't let the dumbbells drift forward."],
+  'Lateral Raise':['Side shoulders',['Stand with dumbbells at your sides.','Raise arms out to shoulder height, elbows soft.','Lower slowly.'],'Go light and lead with your elbows.'],
+  'Rear Delt Fly':['Rear shoulders',['Bend forward, dumbbells hanging below you.','Raise arms out to the sides.','Lower slowly.'],'Think “pull wide”, not “pull up”.'],
+  'Face Pull':['Rear shoulders, upper back',['Set the rope at face height.','Pull toward your forehead, hands moving apart.','Return slowly.'],'Great for posture. Keep it light.'],
+  'Shrugs':['Traps',['Hold weights at your sides.','Lift shoulders straight up toward your ears.','Lower slowly.'],"Don't roll your shoulders."],
+  'Barbell Curl':['Biceps',['Stand with an underhand, shoulder-width grip.','Curl the bar to your chest, elbows at your sides.','Lower fully.'],'No swinging — lower the weight if you need to.'],
+  'Dumbbell Curl':['Biceps',['Dumbbells at sides, palms forward.','Curl up and squeeze at the top.','Lower slowly.'],'Keep elbows pinned to your sides.'],
+  'Hammer Curl':['Biceps, forearms',['Dumbbells at sides, palms facing each other.','Curl up keeping palms facing in.','Lower slowly.'],'Elbows stay still.'],
+  'Tricep Pushdown':['Triceps',['Face the cable, bar or rope at chest height.','Push down until arms are straight.','Return until forearms are parallel to the floor.'],'Elbows stay pinned at your sides.'],
+  'Skull Crusher':['Triceps',['Lie on a bench, bar held above your chest.','Bend elbows to lower the bar toward your forehead.','Extend back up.'],'Upper arms stay still. An EZ bar is easier on wrists.'],
+  'Overhead Tricep Extension':['Triceps',['Hold one dumbbell overhead with both hands.','Lower it behind your head.','Extend back up.'],'Keep elbows pointing forward.'],
+  'Plank':['Core',['Forearms on the floor, body in a straight line.','Hold, squeezing abs and glutes.','Breathe steadily.'],"Hips shouldn't sag or pike up. Log the time in minutes (e.g. 1.5)."],
+  'Crunches':['Abs',['Lie down, knees bent, hands by your head.','Curl your shoulders off the floor.','Lower slowly.'],"Don't pull on your neck."],
+  'Hanging Leg Raise':['Lower abs',['Hang from a bar.','Raise legs (bent or straight) to hip height.','Lower slowly.'],'Avoid swinging.'],
+  'Russian Twist':['Obliques',['Sit, lean back slightly, feet on or off the floor.','Rotate to touch the floor on one side, then the other.','Each touch counts as one rep.'],'Hold a plate to make it harder.'],
+  'Cable Crunch':['Abs',['Kneel facing the cable, rope beside your head.','Crunch down bringing elbows toward knees.','Return slowly.'],'Move with your abs, not your hips.'],
+  'Treadmill':['Heart, legs',['Warm up with 3–5 minutes of easy walking.','Run or walk briskly at a pace where you can still talk.','Cool down for 3 minutes.'],'Incline walking is easy on the joints.'],
+  'Cycling':['Heart, legs',['Set the seat at hip height.','Pedal at a steady pace.','Add resistance as you get fitter.'],'Knees should be slightly bent at the bottom of the pedal stroke.'],
+  'Skipping':['Heart, calves',['Hold handles at hip height.','Jump just high enough to clear the rope.','Land softly on the balls of your feet.'],'Short rounds with rests work well when starting out.'],
+  'Rowing Machine':['Heart, back, legs',['Push with your legs first.','Then lean back slightly and pull the handle to your chest.','Reverse the order to return.'],'Legs do most of the work, not the arms.'],
+  'Cross Trainer':['Heart, full body',['Stand tall, hold the handles.','Push and pull at a steady rhythm.','Raise resistance to make it harder.'],'Low impact — good on rest days.']
+};
+
+const PLAN_ICON = {'Push':'🏋️','Pull':'🧗','Legs':'🦵','Full Body':'⚡'};
+const PLAN_NOTE = {
+  'Push':'Chest, shoulders and triceps.',
+  'Pull':'Back and biceps.',
+  'Legs':'Quads, hamstrings, glutes and calves.',
+  'Full Body':'Whole body in one session. Good for 2–3 days a week.'
+};
+
+let tab = 'workouts', libGroup = 'Chest';
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function exType(name){ for (const g in LIB) for (const [n,t] of LIB[g]) if (n === name) return t; return 'w'; }
+function groupOf(name){ for (const g in LIB) if (LIB[g].some(([n]) => n === name)) return g; return ''; }
+function target(name){
+  const t = exType(name), g = groupOf(name);
+  if (t === 't') return g === 'Cardio' ? '15–30 min' : '3 × 30–60 sec';
+  if (t === 'b') return '3 × as many as you can';
+  return '3 × 8–12 reps';
+}
+const TYPE_LABEL = {w:'weights', b:'bodyweight', t:'timed'};
+
+/* ---------- Views ---------- */
+function header(){ return `<div class="top"><div class="brand">BE<span>BA</span></div></div>`; }
+
+function viewWorkouts(){
+  let html = header() + `<h2 style="margin-top:0">Workouts</h2>
+    <p class="muted small" style="margin:-4px 0 12px">Ready-made plans. Tap one to see its exercises.</p>`;
+  html += Object.entries(TEMPLATES).map(([n,l]) => `<button class="card" style="width:100%;text-align:left" data-act="plan" data-v="${esc(n)}">
+    <div class="row between"><h3>${PLAN_ICON[n] || '💪'} ${esc(n)}</h3><span class="muted small">${l.length} exercises ›</span></div>
+    <div class="muted small" style="margin-top:4px">${esc(PLAN_NOTE[n] || '')}</div></button>`).join('');
+  html += `<h2>By muscle group</h2><div class="tpl">${Object.keys(LIB).map(g => `<button data-act="groupDay" data-v="${esc(g)}"><b>${esc(g)} Day</b><span>${LIB[g].length} exercises</span></button>`).join('')}</div>`;
+  return html;
+}
+function planList(title, note, names){
+  return `<div class="row between"><div><h3>${esc(title)}</h3><div class="muted small">${esc(note)}</div></div><button class="btn sm" data-act="close">Close</button></div>
+    <div class="card list" style="padding:0 14px;margin-top:12px">${names.map((n,i) => `<button class="item" data-act="info" data-v="${esc(n)}">
+      <div><span class="muted" style="display:inline-block;width:22px">${i+1}.</span><b>${esc(n)}</b>
+      <div class="muted small" style="margin-left:22px">${esc(HOW[n] ? HOW[n][0] : '')}</div></div>
+      <span class="small" style="color:var(--accent);white-space:nowrap;margin-left:8px">${esc(target(n))}</span></button>`).join('')}</div>
+    <p class="muted small">Rest 1–2 minutes between sets. Tap any exercise for how to do it.</p>`;
+}
+
+function libList(q){
+  q = (q||'').trim().toLowerCase();
+  let items = [];
+  if (q) { for (const g in LIB) LIB[g].forEach(([n]) => items.push([n,g]));
+    items = items.filter(([n,g]) => n.toLowerCase().includes(q) || g.toLowerCase().includes(q) || (HOW[n] && HOW[n][0].toLowerCase().includes(q))); }
+  else items = LIB[libGroup].map(([n]) => [n, libGroup]);
+  if (!items.length) return '<div class="card empty">No exercise found.</div>';
+  return `<div class="card list" style="padding:0 14px">${items.map(([n]) => `<button class="item" data-act="info" data-v="${esc(n)}">
+    <div><b>${esc(n)}</b><div class="muted small">${esc(HOW[n] ? HOW[n][0] : '')}</div></div><span class="muted">›</span></button>`).join('')}</div>`;
+}
+function viewExercises(){
+  return header() + `<h2 style="margin-top:0">Exercises</h2>
+    <input id="lib-q" placeholder="Search e.g. chest, curl, squat" autocomplete="off" style="margin-bottom:10px">
+    <div class="chips" id="lib-chips">${Object.keys(LIB).map(g => `<button class="${g === libGroup ? 'on' : ''}" data-act="libGroup" data-v="${esc(g)}">${esc(g)}</button>`).join('')}</div>
+    <div id="lib-list">${libList('')}</div>`;
+}
+function openInfo(name){
+  const h = HOW[name], t = exType(name);
+  const back = $('#modal').dataset.back;
+  openModal(`<div class="row between"><div><h3>${esc(name)}</h3><div class="muted small">${esc(groupOf(name))} <span class="tag">${TYPE_LABEL[t]}</span></div></div>
+    <button class="btn sm" data-act="${back ? 'back' : 'close'}">${back ? '‹ Back' : 'Close'}</button></div>
+    ${h ? `<div class="card" style="margin-top:12px"><div class="muted small">Muscles worked</div><b>${esc(h[0])}</b>
+      <div class="muted small" style="margin-top:10px">Suggested</div><b>${esc(target(name))}</b>
+      <div class="muted small" style="margin-top:10px">How to do it</div><ol style="margin:4px 0 0;padding-left:20px">${h[1].map(s => `<li style="margin:4px 0">${esc(s)}</li>`).join('')}</ol>
+      <div style="margin-top:10px;padding:10px;border-radius:10px;background:rgba(198,244,50,.08);font-size:13px">💡 ${esc(h[2])}</div></div>` : ''}
+    <a class="btn block" href="https://www.youtube.com/results?search_query=${encodeURIComponent('how to do ' + name + ' proper form')}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--text)">▶ Watch how-to videos</a>`, back);
+}
+
+/* ---------- Shell ---------- */
+const ICONS = {
+  workouts:'<path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/>',
+  exercises:'<path d="M4 5h16M4 12h16M4 19h10"/><circle cx="19" cy="19" r="2"/>'
+};
+function render(){
+  $('#app').innerHTML = tab === 'exercises' ? viewExercises() : viewWorkouts();
+  $('#nav').innerHTML = [['workouts','Workouts'],['exercises','Exercises']].map(([k,l]) =>
+    `<button class="${tab === k ? 'on' : ''}" data-act="tab" data-v="${k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>${l}</button>`).join('');
+}
+// modal: optional "back" restores the plan list when opening an exercise from a plan
+function openModal(html, back){
+  const m = $('#modal');
+  m.innerHTML = `<div class="modal" data-act="bg"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${html}</div></div>`;
+  if (back) m.dataset.back = back; else delete m.dataset.back;
+}
+function closeModal(){ const m = $('#modal'); m.innerHTML = ''; delete m.dataset.back; }
+let lastPlan = null;
+function showPlan(p){ lastPlan = p; openModal(planList(p.title, p.note, p.names)); $('#modal').dataset.back = '1'; }
+
+document.addEventListener('click', ev => {
+  const el = ev.target.closest('[data-act]'); if (!el) return;
+  const act = el.dataset.act, v = el.dataset.v;
+  if (act === 'bg') { if (ev.target === el) closeModal(); return; }
+  switch (act) {
+    case 'tab': tab = v; closeModal(); render(); window.scrollTo(0,0); break;
+    case 'plan': showPlan({title:(PLAN_ICON[v] || '') + ' ' + v, note:PLAN_NOTE[v] || '', names:TEMPLATES[v]}); break;
+    case 'groupDay': showPlan({title:v + ' Day', note:'All ' + v.toLowerCase() + ' exercises. Pick 4–5 of them for one session.', names:LIB[v].map(([n]) => n)}); break;
+    case 'info': if (!$('#modal').innerHTML) delete $('#modal').dataset.back; openInfo(v); break;
+    case 'back': lastPlan ? showPlan(lastPlan) : closeModal(); break;
+    case 'libGroup': libGroup = v; render(); break;
+    case 'close': closeModal(); break;
+  }
+});
+document.addEventListener('input', ev => {
+  if (ev.target.id === 'lib-q') { $('#lib-list').innerHTML = libList(ev.target.value); $('#lib-chips').style.opacity = ev.target.value.trim() ? .4 : 1; }
+});
+window.bebaBack = function(){ const m = $('#modal'); if (!m.innerHTML) return false; if (m.dataset.back && lastPlan && $('[data-act="back"]')) showPlan(lastPlan); else closeModal(); return true; };
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeModal(); });
+render();
+</script>
+</body>
+</html>

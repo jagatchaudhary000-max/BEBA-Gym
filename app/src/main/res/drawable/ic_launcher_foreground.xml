@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lime dumbbell on the 108dp adaptive-icon canvas (safe zone is the middle 66dp) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- bar -->
+    <path android:fillColor="#C6F432" android:pathData="M38,51h32v6h-32z" />
+    <!-- left plates -->
+    <path android:fillColor="#C6F432" android:pathData="M31,38h7a2,2 0 0 1 2,2v28a2,2 0 0 1 -2,2h-7a2,2 0 0 1 -2,-2v-28a2,2 0 0 1 2,-2z" />
+    <path android:fillColor="#C6F432" android:pathData="M24,44h3a2,2 0 0 1 2,2v16a2,2 0 0 1 -2,2h-3a2,2 0 0 1 -2,-2v-16a2,2 0 0 1 2,-2z" />
+    <!-- right plates -->
+    <path android:fillColor="#C6F432" android:pathData="M70,38h7a2,2 0 0 1 2,2v28a2,2 0 0 1 -2,2h-7a2,2 0 0 1 -2,-2v-28a2,2 0 0 1 2,-2z" />
+    <path android:fillColor="#C6F432" android:pathData="M81,44h3a2,2 0 0 1 2,2v16a2,2 0 0 1 -2,2h-3a2,2 0 0 1 -2,-2v-16a2,2 0 0 1 2,-2z" />
+</vector>
