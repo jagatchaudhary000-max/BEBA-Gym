@@ -1,8 +1,8 @@
-# Builds BEBA.apk on GitHub's servers with Google's official Android tools
+# Builds JagatsGymGuide.apk on GitHub's servers with Google's official Android tools
 # (the Android SDK comes preinstalled on GitHub's Ubuntu machines).
 # Runs on every push to main, or by hand from the Actions tab ("Run workflow").
 # Each successful build is published under "Releases" for easy download.
-name: Build BEBA APK
+name: Build Gym Guide APK
 
 on:
   push:
@@ -30,17 +30,17 @@ jobs:
       - name: Build APK
         run: |
           gradle assembleDebug --no-daemon
-          cp app/build/outputs/apk/debug/app-debug.apk BEBA.apk
+          cp app/build/outputs/apk/debug/app-debug.apk JagatsGymGuide.apk
 
       - uses: actions/upload-artifact@v4
         with:
-          name: BEBA-apk
-          path: BEBA.apk
+          name: JagatsGymGuide-apk
+          path: JagatsGymGuide.apk
 
       - name: Publish to Releases
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "build-${{ github.run_number }}" BEBA.apk \
-            --title "BEBA build ${{ github.run_number }}" \
-            --notes "Download BEBA.apk below and open it on your Android phone to install."
+          gh release create "build-${{ github.run_number }}" JagatsGymGuide.apk \
+            --title "Jagat's Gym Guide build ${{ github.run_number }}" \
+            --notes "Download JagatsGymGuide.apk below and open it on your Android phone to install."

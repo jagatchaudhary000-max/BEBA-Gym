@@ -1,13 +1,18 @@
-# BEBA – Android app
+# Jagat's Gym Guide – Android app
 
-BEBA shows workout plans and a guide to 45 exercises. It works offline;
-only the "Watch how-to videos" button needs internet.
+Workout plans with warm-up stretches for each body part, and a guide to 44
+exercises and 20 stretches. Each one has a photo, a start/end animation and
+simple steps. It works offline; only the "Watch how-to videos" button needs
+internet.
+
+Exercise photos: [free-exercise-db](https://github.com/yuhonas/free-exercise-db),
+released into the public domain (Unlicense).
 
 There are two ways to get the APK. Pick one.
 
 ## Option A: GitHub (no software to install)
 
-1. Sign in at https://github.com and create a new repository called `BEBA`.
+1. Sign in at https://github.com and create a new repository called `BEBA-Gym`.
    It can be private.
 2. On the empty repository page, click **uploading an existing file**.
    Drag in **everything inside this folder**, including the hidden
@@ -16,11 +21,11 @@ There are two ways to get the APK. Pick one.
      on GitHub instead: **Add file → Create new file**, name it
      `.github/workflows/build-apk.yml`, and paste in the contents of
      that file.
-3. Open the **Actions** tab. The "Build BEBA APK" job starts
+3. Open the **Actions** tab. The "Build Gym Guide APK" job starts
    by itself and takes about 3–5 minutes. If it doesn't start, click it, then
    **Run workflow**.
 4. When it shows a green tick, open the repository's **Releases**
-   (right-hand side of the main page) and download **BEBA.apk**. You can
+   (right-hand side of the main page) and download **JagatsGymGuide.apk**. You can
    do this straight from your phone.
 
 ## Option B: Android Studio

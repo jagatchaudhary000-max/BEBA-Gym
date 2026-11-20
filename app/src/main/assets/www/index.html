@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>BEBA</title>
+<meta name="description" content="Jagat's Gym Guide: workout plans, warm-up stretches and how-to guides with photos and animations.">
+<title>Jagat's Gym Guide</title>
 <style>
 @font-face{font-family:'Inter';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2')}
 @font-face{font-family:'Inter';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format('woff2')}
@@ -94,13 +95,39 @@ nav .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);positio
 label.f{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
 textarea{min-height:70px;resize:vertical}
 .grp{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:14px 0 4px}
-</style>
-</head>
+
+.brand{font-size:24px}
+.thumb{width:56px;height:42px;border-radius:8px;object-fit:cover;background:var(--card2);flex:none;margin-right:10px;display:block}
+.list .item{align-items:center}
+.item .grow{flex:1;min-width:0;text-align:left}
+.num{width:18px;color:var(--muted);font-weight:600;flex:none;font-size:13px}
+.dose{font-size:12px;color:var(--accent);margin-left:8px;text-align:right;max-width:104px;flex:none}
+.plan{width:100%;text-align:left;display:block}
+.pthumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pthumbs .thumb{width:100%;height:72px;margin:0}
+.sec{margin-top:16px}
+.sech{display:flex;justify-content:space-between;align-items:baseline;margin:0 2px 6px;gap:8px}
+.anim{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/2;background:#000;margin-top:12px;cursor:pointer;display:block;width:100%}
+.anim img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.anim .f2,.anim .l2{animation:flipIn 1.8s infinite}
+.anim .l1{animation:flipOut 1.8s infinite}
+@keyframes flipIn{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+@keyframes flipOut{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+.lbl{position:absolute;left:10px;top:10px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;font-weight:600;padding:3px 9px;border-radius:6px}
+.pp{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;padding:4px 10px;border-radius:8px;display:none}
+.anim.paused .f2,.anim.paused .lbl{animation-play-state:paused}
+.anim.paused .pp{display:block}
+@media (prefers-reduced-motion:reduce){.anim .f2,.anim .lbl{animation-duration:4s}}
+.stills{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stills figure{margin:0}
+.stills img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:10px;display:block;background:var(--card2)}
+.stills figcaption{font-size:12px;color:var(--muted);margin-top:4px;text-align:center}
+.tip{margin-top:10px;padding:10px;border-radius:10px;background:rgba(198,244,50,.08);font-size:13px}
+</style></head>
 <body>
 <div class="wrap" id="app"></div>
 <nav><div class="in" id="nav"></div></nav>
 <div id="modal"></div>
-
 <script>
 const LIB = {
   Chest:[['Bench Press','w'],['Incline Dumbbell Press','w'],['Dumbbell Bench Press','w'],['Chest Fly (Machine)','w'],['Cable Crossover','w'],['Push-up','b'],['Dips','b']],
@@ -165,6 +192,45 @@ const HOW = {
   'Cross Trainer':['Heart, full body',['Stand tall, hold the handles.','Push and pull at a steady rhythm.','Raise resistance to make it harder.'],'Low impact — good on rest days.']
 };
 
+const IMG = {"Bench Press": "bench-press", "Incline Dumbbell Press": "incline-dumbbell-press", "Dumbbell Bench Press": "dumbbell-bench-press", "Chest Fly (Machine)": "chest-fly-machine", "Cable Crossover": "cable-crossover", "Push-up": "push-up", "Dips": "dips", "Deadlift": "deadlift", "Pull-up": "pull-up", "Lat Pulldown": "lat-pulldown", "Barbell Row": "barbell-row", "Seated Cable Row": "seated-cable-row", "Dumbbell Row": "dumbbell-row", "Back Extension": "back-extension", "Squat": "squat", "Leg Press": "leg-press", "Romanian Deadlift": "romanian-deadlift", "Lunges": "lunges", "Leg Extension": "leg-extension", "Leg Curl": "leg-curl", "Calf Raise": "calf-raise", "Hip Thrust": "hip-thrust", "Overhead Press": "overhead-press", "Dumbbell Shoulder Press": "dumbbell-shoulder-press", "Lateral Raise": "lateral-raise", "Rear Delt Fly": "rear-delt-fly", "Face Pull": "face-pull", "Shrugs": "shrugs", "Barbell Curl": "barbell-curl", "Dumbbell Curl": "dumbbell-curl", "Hammer Curl": "hammer-curl", "Tricep Pushdown": "tricep-pushdown", "Skull Crusher": "skull-crusher", "Overhead Tricep Extension": "overhead-tricep-extension", "Plank": "plank", "Crunches": "crunches", "Hanging Leg Raise": "hanging-leg-raise", "Russian Twist": "russian-twist", "Cable Crunch": "cable-crunch", "Treadmill": "treadmill", "Cycling": "cycling", "Skipping": "skipping", "Rowing Machine": "rowing-machine", "Cross Trainer": "cross-trainer", "Dynamic Chest Stretch": "dynamic-chest-stretch", "Elbows Back": "elbows-back", "Arm Circles": "arm-circles", "Cat Stretch": "cat-stretch", "Child's Pose": "child-s-pose", "Upper Back Stretch": "upper-back-stretch", "On Your Side Quad Stretch": "on-your-side-quad-stretch", "Standing Toe Touches": "standing-toe-touches", "Calf Stretch Hands Against Wall": "calf-stretch-hands-against-wall", "Kneeling Hip Flexor": "kneeling-hip-flexor", "Shoulder Circles": "shoulder-circles", "Shoulder Stretch": "shoulder-stretch", "Triceps Stretch": "triceps-stretch", "Standing Biceps Stretch": "standing-biceps-stretch", "Wrist Circles": "wrist-circles", "Standing Lateral Stretch": "standing-lateral-stretch", "Overhead Stretch": "overhead-stretch", "Hug Knees To Chest": "hug-knees-to-chest", "Ankle Circles": "ankle-circles", "Standing Hip Circles": "standing-hip-circles"};
+/* ---------- Stretches: [muscles, steps, tip, how long] ---------- */
+const STRETCH = {
+  'Dynamic Chest Stretch':['Chest, front shoulders',['Stand tall, arms straight out in front, palms together.','Swing both arms open and back as far as is comfortable.','Bring them back together like a big clap.'],'Start slow, then speed up a little.','10 swings'],
+  'Elbows Back':['Chest',['Stand tall with both hands on your lower back, fingers pointing down.','Gently pull your elbows back toward each other.','Hold and breathe slowly.'],"Keep your chin level and don't arch your back.",'Hold 20 sec'],
+  'Arm Circles':['Shoulders, chest',['Stand with arms straight out to the sides at shoulder height.','Make small circles forward, slowly making them bigger.','Then reverse direction.'],'Keep shoulders relaxed, away from your ears.','10 each way'],
+  'Cat Stretch':['Back',['Get on hands and knees, hands under shoulders.','Pull your belly in and round your back up, letting your head drop.','Relax back to a flat back.'],'Move slowly with your breathing.','Hold 15 sec × 3'],
+  "Child's Pose":['Lower back, lats',['Kneel, then walk your hands forward on the floor.','Sit your hips back onto your heels, arms stretched forward.','Rest your forehead on the floor and breathe.'],'Skip it if your knees hurt.','Hold 30 sec'],
+  'Upper Back Stretch':['Upper back',['Stand tall and clasp your fingers together.','Reach your arms forward and round your shoulders.','Feel the stretch between your shoulder blades.'],'Let your head relax forward a little.','Hold 20 sec'],
+  'On Your Side Quad Stretch':['Front thighs (quads)',['Lie on your side, bottom knee bent in front of you.','Bend your top knee and hold that ankle behind you.','Gently pull the heel toward your bum.'],'Keep knees close together. Switch sides.','Hold 20 sec each side'],
+  'Standing Toe Touches':['Hamstrings, lower back',['Stand tall, feet together.','Bend forward from the hips with legs straight and let your arms hang.','Reach toward your toes and relax.'],"Bend your knees slightly if it's too tight. Don't bounce.",'Hold 20 sec'],
+  'Calf Stretch Hands Against Wall':['Calves',['Face a wall with hands on it, one foot forward.','Keep the back leg straight and its heel on the floor.','Lean in until the back calf stretches.'],'Heel, hip and head in one line. Switch sides.','Hold 20 sec each side'],
+  'Kneeling Hip Flexor':['Hip flexors, quads',['Kneel on one knee with the other foot flat in front.','Keep your back straight and shift your hips forward.','Feel the stretch at the front of the back hip.'],'Put a mat or towel under the knee.','Hold 20 sec each side'],
+  'Shoulder Circles':['Shoulders, upper back',['Stand with arms relaxed at your sides.','Roll your shoulders forward, up, back and down.','Then reverse direction.'],'Make the circles big and slow.','10 each way'],
+  'Shoulder Stretch':['Rear shoulders',['Bring one straight arm across your chest.','Hold it above the elbow with your other hand.','Gently pull it closer to your chest.'],'Keep the shoulder down. Switch arms.','Hold 20 sec each arm'],
+  'Triceps Stretch':['Triceps',['Reach one hand behind your head toward your upper back.','Hold that elbow with your other hand.','Gently pull the elbow toward your head.'],'Stand tall. Switch arms.','Hold 20 sec each arm'],
+  'Standing Biceps Stretch':['Biceps, chest',['Clasp your hands behind your back.','Straighten your arms and turn your palms down.','Slowly lift your arms up behind you.'],'Keep your chest up.','Hold 20 sec'],
+  'Wrist Circles':['Forearms, wrists',['Stand with arms straight out to the sides.','Make slow circles with your wrists only.','Then reverse direction.'],'Good before curls, presses and push-ups.','10 each way'],
+  'Standing Lateral Stretch':['Side abs (obliques)',['Stand with feet a bit wider than hips, knees soft.','Put one hand on your hip and the other arm up behind your head.','Lean slowly toward the hand on your hip.'],'Keep weight even on both feet. Switch sides.','Hold 15 sec each side'],
+  'Overhead Stretch':['Abs, whole torso',['Stand tall and lace your fingers together.','Push your palms up toward the ceiling.','Stretch up tall with shoulders down.'],'Breathe deeply into the stretch.','Hold 15 sec'],
+  'Hug Knees To Chest':['Lower back, glutes',['Lie on your back.','Pull both knees toward your chest.','Hold under the knees and gently pull closer.'],'Hold under the knees, not on top of them.','Hold 20 sec'],
+  'Ankle Circles':['Ankles, calves',['Hold something steady for balance.','Lift one foot a little off the floor.','Draw big circles with your toes, then switch feet.'],'Do both directions.','10 each way, each foot'],
+  'Standing Hip Circles':['Hips',['Stand on one leg, holding something for balance.','Lift the other knee to hip height.','Draw a big circle out to the side with the knee.'],'Move slowly. Switch legs.','5 each way, each leg']
+};
+const WARM = {
+  Chest:['Arm Circles','Dynamic Chest Stretch','Elbows Back'],
+  Back:['Cat Stretch',"Child's Pose",'Upper Back Stretch'],
+  Legs:['Kneeling Hip Flexor','On Your Side Quad Stretch','Standing Toe Touches','Calf Stretch Hands Against Wall'],
+  Shoulders:['Arm Circles','Shoulder Circles','Shoulder Stretch'],
+  Arms:['Wrist Circles','Triceps Stretch','Standing Biceps Stretch'],
+  Core:['Standing Lateral Stretch','Overhead Stretch','Hug Knees To Chest'],
+  Cardio:['Ankle Circles','Standing Hip Circles','Arm Circles']
+};
+const PLAN_WARM = {
+  'Push':['Arm Circles','Dynamic Chest Stretch','Elbows Back','Shoulder Stretch','Triceps Stretch'],
+  'Pull':['Shoulder Circles','Cat Stretch','Upper Back Stretch',"Child's Pose",'Standing Biceps Stretch'],
+  'Legs':['Standing Hip Circles','Kneeling Hip Flexor','On Your Side Quad Stretch','Standing Toe Touches','Calf Stretch Hands Against Wall'],
+  'Full Body':['Arm Circles','Dynamic Chest Stretch','Upper Back Stretch','Standing Toe Touches','Kneeling Hip Flexor']
+};
 const PLAN_ICON = {'Push':'🏋️','Pull':'🧗','Legs':'🦵','Full Body':'⚡'};
 const PLAN_NOTE = {
   'Push':'Chest, shoulders and triceps.',
@@ -176,63 +242,90 @@ const PLAN_NOTE = {
 let tab = 'workouts', libGroup = 'Chest';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isStretch = n => !!STRETCH[n];
+const img = (n, k) => IMG[n] ? `img/${IMG[n]}-${k}.webp` : '';
 function exType(name){ for (const g in LIB) for (const [n,t] of LIB[g]) if (n === name) return t; return 'w'; }
-function groupOf(name){ for (const g in LIB) if (LIB[g].some(([n]) => n === name)) return g; return ''; }
+function groupOf(name){ for (const g in LIB) if (LIB[g].some(([n]) => n === name)) return g; return isStretch(name) ? 'Stretch' : ''; }
 function target(name){
+  if (isStretch(name)) return STRETCH[name][3];
   const t = exType(name), g = groupOf(name);
   if (t === 't') return g === 'Cardio' ? '15–30 min' : '3 × 30–60 sec';
   if (t === 'b') return '3 × as many as you can';
   return '3 × 8–12 reps';
 }
+function info(name){ return STRETCH[name] || HOW[name]; }
 const TYPE_LABEL = {w:'weights', b:'bodyweight', t:'timed'};
 
-/* ---------- Views ---------- */
-function header(){ return `<div class="top"><div class="brand">BE<span>BA</span></div></div>`; }
+/* ---------- Pieces ---------- */
+function header(){ return `<div class="top"><div class="brand">JAGAT'S <span>GYM GUIDE</span></div></div>`; }
+function thumb(n){ return IMG[n] ? `<img class="thumb" src="${img(n,0)}" alt="" loading="lazy" decoding="async">` : `<span class="thumb"></span>`; }
+function row(n, num){
+  const h = info(n);
+  return `<button class="item" data-act="info" data-v="${esc(n)}">
+    ${num ? `<span class="num">${num}</span>` : ''}${thumb(n)}
+    <div class="grow"><b>${esc(n)}</b><div class="muted small">${esc(h ? h[0] : '')}</div></div>
+    <span class="dose">${esc(target(n))}</span></button>`;
+}
+function section(title, sub, names, numbered){
+  return `<div class="sec"><div class="sech"><b>${title}</b>${sub ? `<span class="muted small">${sub}</span>` : ''}</div>
+    <div class="card list" style="padding:0 12px">${names.map((n,i) => row(n, numbered ? i+1 : 0)).join('')}</div></div>`;
+}
+const WARM_NOTE = 'Ease into each stretch. No bouncing, and stop if it hurts.';
 
+/* ---------- Views ---------- */
 function viewWorkouts(){
   let html = header() + `<h2 style="margin-top:0">Workouts</h2>
-    <p class="muted small" style="margin:-4px 0 12px">Ready-made plans. Tap one to see its exercises.</p>`;
-  html += Object.entries(TEMPLATES).map(([n,l]) => `<button class="card" style="width:100%;text-align:left" data-act="plan" data-v="${esc(n)}">
-    <div class="row between"><h3>${PLAN_ICON[n] || '💪'} ${esc(n)}</h3><span class="muted small">${l.length} exercises ›</span></div>
+    <p class="muted small" style="margin:-4px 0 12px">Each plan starts with warm-up stretches, then the exercises. Tap a plan to open it.</p>`;
+  html += Object.entries(TEMPLATES).map(([n,l]) => `<button class="card plan" data-act="plan" data-v="${esc(n)}">
+    <div class="pthumbs">${l.slice(0,3).map(e => thumb(e)).join('')}</div>
+    <div class="row between" style="margin-top:10px"><h3>${PLAN_ICON[n] || '💪'} ${esc(n)}</h3><span class="muted small">${PLAN_WARM[n].length} stretches · ${l.length} exercises ›</span></div>
     <div class="muted small" style="margin-top:4px">${esc(PLAN_NOTE[n] || '')}</div></button>`).join('');
-  html += `<h2>By muscle group</h2><div class="tpl">${Object.keys(LIB).map(g => `<button data-act="groupDay" data-v="${esc(g)}"><b>${esc(g)} Day</b><span>${LIB[g].length} exercises</span></button>`).join('')}</div>`;
+  html += `<h2>By muscle group</h2><div class="tpl">${Object.keys(LIB).map(g => `<button data-act="groupDay" data-v="${esc(g)}"><b>${esc(g)} Day</b><span>${WARM[g].length} stretches · ${LIB[g].length} exercises</span></button>`).join('')}</div>`;
   return html;
 }
-function planList(title, note, names){
-  return `<div class="row between"><div><h3>${esc(title)}</h3><div class="muted small">${esc(note)}</div></div><button class="btn sm" data-act="close">Close</button></div>
-    <div class="card list" style="padding:0 14px;margin-top:12px">${names.map((n,i) => `<button class="item" data-act="info" data-v="${esc(n)}">
-      <div><span class="muted" style="display:inline-block;width:22px">${i+1}.</span><b>${esc(n)}</b>
-      <div class="muted small" style="margin-left:22px">${esc(HOW[n] ? HOW[n][0] : '')}</div></div>
-      <span class="small" style="color:var(--accent);white-space:nowrap;margin-left:8px">${esc(target(n))}</span></button>`).join('')}</div>
-    <p class="muted small">Rest 1–2 minutes between sets. Tap any exercise for how to do it.</p>`;
+function planSheet(p){
+  return `<div class="row between"><div><h3>${esc(p.title)}</h3><div class="muted small">${esc(p.note)}</div></div><button class="btn sm" data-act="close">Close</button></div>
+    ${section('Step 1 · Warm-up stretches', 'about 5 min', p.warm, true)}
+    <p class="muted small" style="margin:-4px 0 0">${WARM_NOTE}</p>
+    ${section('Step 2 · Exercises', 'rest 1–2 min between sets', p.names, true)}
+    <p class="muted small">Tap any stretch or exercise to see the animation, photos and how to do it.</p>`;
 }
 
 function libList(q){
   q = (q||'').trim().toLowerCase();
-  let items = [];
-  if (q) { for (const g in LIB) LIB[g].forEach(([n]) => items.push([n,g]));
-    items = items.filter(([n,g]) => n.toLowerCase().includes(q) || g.toLowerCase().includes(q) || (HOW[n] && HOW[n][0].toLowerCase().includes(q))); }
-  else items = LIB[libGroup].map(([n]) => [n, libGroup]);
-  if (!items.length) return '<div class="card empty">No exercise found.</div>';
-  return `<div class="card list" style="padding:0 14px">${items.map(([n]) => `<button class="item" data-act="info" data-v="${esc(n)}">
-    <div><b>${esc(n)}</b><div class="muted small">${esc(HOW[n] ? HOW[n][0] : '')}</div></div><span class="muted">›</span></button>`).join('')}</div>`;
+  if (q) {
+    const all = [];
+    for (const g in LIB) LIB[g].forEach(([n]) => all.push(n));
+    Object.keys(STRETCH).forEach(n => all.push(n));
+    const hits = all.filter(n => { const h = info(n); return n.toLowerCase().includes(q) || groupOf(n).toLowerCase().includes(q) || (h && h[0].toLowerCase().includes(q)); });
+    return hits.length ? `<div class="card list" style="padding:0 12px">${hits.map(n => row(n)).join('')}</div>` : '<div class="card empty">No exercise found.</div>';
+  }
+  if (libGroup === 'Stretches') return section('All stretches', Object.keys(STRETCH).length + ' stretches', Object.keys(STRETCH));
+  return section('Stretch first', 'about 3 min', WARM[libGroup]) + section(libGroup + ' exercises', LIB[libGroup].length + ' exercises', LIB[libGroup].map(([n]) => n));
 }
 function viewExercises(){
+  const groups = Object.keys(LIB).concat('Stretches');
   return header() + `<h2 style="margin-top:0">Exercises</h2>
-    <input id="lib-q" placeholder="Search e.g. chest, curl, squat" autocomplete="off" style="margin-bottom:10px">
-    <div class="chips" id="lib-chips">${Object.keys(LIB).map(g => `<button class="${g === libGroup ? 'on' : ''}" data-act="libGroup" data-v="${esc(g)}">${esc(g)}</button>`).join('')}</div>
+    <input id="lib-q" placeholder="Search e.g. chest, curl, stretch" autocomplete="off" style="margin-bottom:10px">
+    <div class="chips" id="lib-chips">${groups.map(g => `<button class="${g === libGroup ? 'on' : ''}" data-act="libGroup" data-v="${esc(g)}">${esc(g)}</button>`).join('')}</div>
     <div id="lib-list">${libList('')}</div>`;
 }
 function openInfo(name){
-  const h = HOW[name], t = exType(name);
-  const back = $('#modal').dataset.back;
-  openModal(`<div class="row between"><div><h3>${esc(name)}</h3><div class="muted small">${esc(groupOf(name))} <span class="tag">${TYPE_LABEL[t]}</span></div></div>
+  const h = info(name), st = isStretch(name), back = $('#modal').dataset.back;
+  const tag = st ? 'stretch' : TYPE_LABEL[exType(name)];
+  openModal(`<div class="row between"><div><h3>${esc(name)}</h3><div class="muted small">${st ? 'Warm-up stretch' : esc(groupOf(name)) + ` <span class="tag">${tag}</span>`}</div></div>
     <button class="btn sm" data-act="${back ? 'back' : 'close'}">${back ? '‹ Back' : 'Close'}</button></div>
+    ${IMG[name] ? `<div class="anim" data-act="anim" role="img" aria-label="Animation of ${esc(name)}, switching between start and end position">
+        <img src="${img(name,0)}" alt=""><img class="f2" src="${img(name,1)}" alt="">
+        <span class="lbl l1">Start</span><span class="lbl l2">End</span><span class="pp" aria-hidden="true">▶ Paused</span></div>
+      <div class="muted small" style="text-align:center;margin:6px 0 10px">Animation · tap to pause</div>
+      <div class="stills"><figure><img src="${img(name,0)}" alt="${esc(name)}: start position" loading="lazy"><figcaption>1 · Start position</figcaption></figure>
+        <figure><img src="${img(name,1)}" alt="${esc(name)}: end position" loading="lazy"><figcaption>2 · End position</figcaption></figure></div>` : ''}
     ${h ? `<div class="card" style="margin-top:12px"><div class="muted small">Muscles worked</div><b>${esc(h[0])}</b>
-      <div class="muted small" style="margin-top:10px">Suggested</div><b>${esc(target(name))}</b>
+      <div class="muted small" style="margin-top:10px">${st ? 'How long' : 'Suggested'}</div><b>${esc(target(name))}</b>
       <div class="muted small" style="margin-top:10px">How to do it</div><ol style="margin:4px 0 0;padding-left:20px">${h[1].map(s => `<li style="margin:4px 0">${esc(s)}</li>`).join('')}</ol>
-      <div style="margin-top:10px;padding:10px;border-radius:10px;background:rgba(198,244,50,.08);font-size:13px">💡 ${esc(h[2])}</div></div>` : ''}
-    <a class="btn block" href="https://www.youtube.com/results?search_query=${encodeURIComponent('how to do ' + name + ' proper form')}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--text)">▶ Watch how-to videos</a>`, back);
+      <div class="tip">💡 ${esc(h[2])}</div></div>` : ''}
+    <a class="btn block" href="https://www.youtube.com/results?search_query=${encodeURIComponent('how to do ' + name + (st ? '' : ' proper form'))}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--text)">▶ Watch how-to videos</a>`, back);
 }
 
 /* ---------- Shell ---------- */
@@ -245,7 +338,6 @@ function render(){
   $('#nav').innerHTML = [['workouts','Workouts'],['exercises','Exercises']].map(([k,l]) =>
     `<button class="${tab === k ? 'on' : ''}" data-act="tab" data-v="${k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>${l}</button>`).join('');
 }
-// modal: optional "back" restores the plan list when opening an exercise from a plan
 function openModal(html, back){
   const m = $('#modal');
   m.innerHTML = `<div class="modal" data-act="bg"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${html}</div></div>`;
@@ -253,7 +345,7 @@ function openModal(html, back){
 }
 function closeModal(){ const m = $('#modal'); m.innerHTML = ''; delete m.dataset.back; }
 let lastPlan = null;
-function showPlan(p){ lastPlan = p; openModal(planList(p.title, p.note, p.names)); $('#modal').dataset.back = '1'; }
+function showPlan(p){ lastPlan = p; openModal(planSheet(p)); $('#modal').dataset.back = '1'; }
 
 document.addEventListener('click', ev => {
   const el = ev.target.closest('[data-act]'); if (!el) return;
@@ -261,10 +353,11 @@ document.addEventListener('click', ev => {
   if (act === 'bg') { if (ev.target === el) closeModal(); return; }
   switch (act) {
     case 'tab': tab = v; closeModal(); render(); window.scrollTo(0,0); break;
-    case 'plan': showPlan({title:(PLAN_ICON[v] || '') + ' ' + v, note:PLAN_NOTE[v] || '', names:TEMPLATES[v]}); break;
-    case 'groupDay': showPlan({title:v + ' Day', note:'All ' + v.toLowerCase() + ' exercises. Pick 4–5 of them for one session.', names:LIB[v].map(([n]) => n)}); break;
+    case 'plan': showPlan({title:(PLAN_ICON[v] || '') + ' ' + v, note:PLAN_NOTE[v] || '', warm:PLAN_WARM[v], names:TEMPLATES[v]}); break;
+    case 'groupDay': showPlan({title:v + ' Day', note:'Do the stretches, then pick 4–5 of these exercises for one session.', warm:WARM[v], names:LIB[v].map(([n]) => n)}); break;
     case 'info': if (!$('#modal').innerHTML) delete $('#modal').dataset.back; openInfo(v); break;
     case 'back': lastPlan ? showPlan(lastPlan) : closeModal(); break;
+    case 'anim': el.classList.toggle('paused'); break;
     case 'libGroup': libGroup = v; render(); break;
     case 'close': closeModal(); break;
   }
@@ -275,6 +368,7 @@ document.addEventListener('input', ev => {
 window.bebaBack = function(){ const m = $('#modal'); if (!m.innerHTML) return false; if (m.dataset.back && lastPlan && $('[data-act="back"]')) showPlan(lastPlan); else closeModal(); return true; };
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeModal(); });
 render();
+
 </script>
 </body>
 </html>

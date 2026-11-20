@@ -11,7 +11,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-/** BEBA: shows the bundled workout guide (assets/www/index.html) full screen. */
+/** Jagat's Gym Guide: shows the bundled workout guide (assets/www/index.html) full screen. */
 public class MainActivity extends Activity {
     private WebView web;
 
