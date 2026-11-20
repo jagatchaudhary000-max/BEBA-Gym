@@ -1,7 +1,8 @@
 # Jagat's Gym Guide – Android app
 
-Workout plans with warm-up stretches for each body part, and a guide to 44
-exercises and 20 stretches. Each one has a photo, a start/end animation and
+Workout plans with warm-up stretches for each body part, cricket warm-ups
+(before batting and before fielding), a Batting Power gym workout, and a guide
+to 60 exercises and 22 stretches. Each one has a photo, a start/end animation and
 simple steps. It works offline; only the "Watch how-to videos" button needs
 internet.
 

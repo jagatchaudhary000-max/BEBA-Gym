@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<meta name="description" content="Jagat's Gym Guide: workout plans, warm-up stretches and how-to guides with photos and animations.">
+<meta name="description" content="Jagat's Gym Guide: workout plans, cricket warm-ups, warm-up stretches and how-to guides with photos and animations.">
 <title>Jagat's Gym Guide</title>
 <style>
 @font-face{font-family:'Inter';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2')}
@@ -192,7 +192,7 @@ const HOW = {
   'Cross Trainer':['Heart, full body',['Stand tall, hold the handles.','Push and pull at a steady rhythm.','Raise resistance to make it harder.'],'Low impact — good on rest days.']
 };
 
-const IMG = {"Bench Press": "bench-press", "Incline Dumbbell Press": "incline-dumbbell-press", "Dumbbell Bench Press": "dumbbell-bench-press", "Chest Fly (Machine)": "chest-fly-machine", "Cable Crossover": "cable-crossover", "Push-up": "push-up", "Dips": "dips", "Deadlift": "deadlift", "Pull-up": "pull-up", "Lat Pulldown": "lat-pulldown", "Barbell Row": "barbell-row", "Seated Cable Row": "seated-cable-row", "Dumbbell Row": "dumbbell-row", "Back Extension": "back-extension", "Squat": "squat", "Leg Press": "leg-press", "Romanian Deadlift": "romanian-deadlift", "Lunges": "lunges", "Leg Extension": "leg-extension", "Leg Curl": "leg-curl", "Calf Raise": "calf-raise", "Hip Thrust": "hip-thrust", "Overhead Press": "overhead-press", "Dumbbell Shoulder Press": "dumbbell-shoulder-press", "Lateral Raise": "lateral-raise", "Rear Delt Fly": "rear-delt-fly", "Face Pull": "face-pull", "Shrugs": "shrugs", "Barbell Curl": "barbell-curl", "Dumbbell Curl": "dumbbell-curl", "Hammer Curl": "hammer-curl", "Tricep Pushdown": "tricep-pushdown", "Skull Crusher": "skull-crusher", "Overhead Tricep Extension": "overhead-tricep-extension", "Plank": "plank", "Crunches": "crunches", "Hanging Leg Raise": "hanging-leg-raise", "Russian Twist": "russian-twist", "Cable Crunch": "cable-crunch", "Treadmill": "treadmill", "Cycling": "cycling", "Skipping": "skipping", "Rowing Machine": "rowing-machine", "Cross Trainer": "cross-trainer", "Dynamic Chest Stretch": "dynamic-chest-stretch", "Elbows Back": "elbows-back", "Arm Circles": "arm-circles", "Cat Stretch": "cat-stretch", "Child's Pose": "child-s-pose", "Upper Back Stretch": "upper-back-stretch", "On Your Side Quad Stretch": "on-your-side-quad-stretch", "Standing Toe Touches": "standing-toe-touches", "Calf Stretch Hands Against Wall": "calf-stretch-hands-against-wall", "Kneeling Hip Flexor": "kneeling-hip-flexor", "Shoulder Circles": "shoulder-circles", "Shoulder Stretch": "shoulder-stretch", "Triceps Stretch": "triceps-stretch", "Standing Biceps Stretch": "standing-biceps-stretch", "Wrist Circles": "wrist-circles", "Standing Lateral Stretch": "standing-lateral-stretch", "Overhead Stretch": "overhead-stretch", "Hug Knees To Chest": "hug-knees-to-chest", "Ankle Circles": "ankle-circles", "Standing Hip Circles": "standing-hip-circles"};
+const IMG = {"Bench Press": "bench-press", "Incline Dumbbell Press": "incline-dumbbell-press", "Dumbbell Bench Press": "dumbbell-bench-press", "Chest Fly (Machine)": "chest-fly-machine", "Cable Crossover": "cable-crossover", "Push-up": "push-up", "Dips": "dips", "Deadlift": "deadlift", "Pull-up": "pull-up", "Lat Pulldown": "lat-pulldown", "Barbell Row": "barbell-row", "Seated Cable Row": "seated-cable-row", "Dumbbell Row": "dumbbell-row", "Back Extension": "back-extension", "Squat": "squat", "Leg Press": "leg-press", "Romanian Deadlift": "romanian-deadlift", "Lunges": "lunges", "Leg Extension": "leg-extension", "Leg Curl": "leg-curl", "Calf Raise": "calf-raise", "Hip Thrust": "hip-thrust", "Overhead Press": "overhead-press", "Dumbbell Shoulder Press": "dumbbell-shoulder-press", "Lateral Raise": "lateral-raise", "Rear Delt Fly": "rear-delt-fly", "Face Pull": "face-pull", "Shrugs": "shrugs", "Barbell Curl": "barbell-curl", "Dumbbell Curl": "dumbbell-curl", "Hammer Curl": "hammer-curl", "Tricep Pushdown": "tricep-pushdown", "Skull Crusher": "skull-crusher", "Overhead Tricep Extension": "overhead-tricep-extension", "Plank": "plank", "Crunches": "crunches", "Hanging Leg Raise": "hanging-leg-raise", "Russian Twist": "russian-twist", "Cable Crunch": "cable-crunch", "Treadmill": "treadmill", "Cycling": "cycling", "Skipping": "skipping", "Rowing Machine": "rowing-machine", "Cross Trainer": "cross-trainer", "Dynamic Chest Stretch": "dynamic-chest-stretch", "Elbows Back": "elbows-back", "Arm Circles": "arm-circles", "Cat Stretch": "cat-stretch", "Child's Pose": "child-s-pose", "Upper Back Stretch": "upper-back-stretch", "On Your Side Quad Stretch": "on-your-side-quad-stretch", "Standing Toe Touches": "standing-toe-touches", "Calf Stretch Hands Against Wall": "calf-stretch-hands-against-wall", "Kneeling Hip Flexor": "kneeling-hip-flexor", "Shoulder Circles": "shoulder-circles", "Shoulder Stretch": "shoulder-stretch", "Triceps Stretch": "triceps-stretch", "Standing Biceps Stretch": "standing-biceps-stretch", "Wrist Circles": "wrist-circles", "Standing Lateral Stretch": "standing-lateral-stretch", "Overhead Stretch": "overhead-stretch", "Hug Knees To Chest": "hug-knees-to-chest", "Ankle Circles": "ankle-circles", "Standing Hip Circles": "standing-hip-circles", "Star Jump": "star-jump", "World's Greatest Stretch": "world-s-greatest-stretch", "Bodyweight Squat": "bodyweight-squat", "Walking Lunge": "walking-lunge", "Fast Skipping": "fast-skipping", "Carioca": "carioca", "Leg Swings": "leg-swings", "Inchworm": "inchworm", "Lateral Bound": "lateral-bound", "Wrist Curl": "wrist-curl", "Reverse Wrist Curl": "reverse-wrist-curl", "Wrist Roller": "wrist-roller", "Farmer's Walk": "farmer-s-walk", "Plate Pinch": "plate-pinch", "Cable Wood Chop": "cable-wood-chop", "Landmine Rotation": "landmine-rotation", "Med Ball Scoop Throw": "med-ball-scoop-throw", "Kneeling Forearm Stretch": "kneeling-forearm-stretch"};
 /* ---------- Stretches: [muscles, steps, tip, how long] ---------- */
 const STRETCH = {
   'Dynamic Chest Stretch':['Chest, front shoulders',['Stand tall, arms straight out in front, palms together.','Swing both arms open and back as far as is comfortable.','Bring them back together like a big clap.'],'Start slow, then speed up a little.','10 swings'],
@@ -231,6 +231,39 @@ const PLAN_WARM = {
   'Legs':['Standing Hip Circles','Kneeling Hip Flexor','On Your Side Quad Stretch','Standing Toe Touches','Calf Stretch Hands Against Wall'],
   'Full Body':['Arm Circles','Dynamic Chest Stretch','Upper Back Stretch','Standing Toe Touches','Kneeling Hip Flexor']
 };
+/* ---------- Cricket: [muscles, steps, tip, how much, kind] ---------- */
+const CR = {
+  'Star Jump':['Whole body, heart rate',['Stand with feet together, crouch slightly.','Jump up, spreading arms and legs out wide like a star.','Land softly with knees bent and repeat.'],'Gets your heart rate up fast. Land on the balls of your feet.','20 jumps','warm-up'],
+  "World's Greatest Stretch":['Hips, hamstrings, upper back',['Step into a long lunge and put both hands on the floor inside your front foot.','Drop the back knee low and hold for a breath.','Twist and reach the arm on the front-foot side up to the sky, then switch sides.'],'Opens your hips and upper back for the batting turn.','3 each side','stretch'],
+  'Bodyweight Squat':['Thighs, glutes',['Stand with feet shoulder-width, hands behind your head.','Sit your hips back and down until thighs are about parallel.','Stand up fast.'],'Chest up, knees in line with toes.','10 reps','warm-up'],
+  'Walking Lunge':['Thighs, glutes, hips',['Take a big step forward and lower your back knee near the floor.','Push through the front foot and step straight into the next lunge.','Keep walking forward, alternating legs.'],'Add a gentle twist toward the front leg for extra hip and back mobility.','5 each leg','warm-up'],
+  'Fast Skipping':['Calves, hips, heart rate',['Start relaxed, one foot slightly forward.','Skip with a quick step-hop, staying close to the ground.','Pump your arms and keep it light and fast.'],'Short, quick contacts — wakes up your legs for quick starts.','2 × 20 m','warm-up'],
+  'Carioca':['Hips, footwork',['Stand side-on to where you are moving.','Step the back foot behind, then across in front, as you travel sideways.','Let your hips turn and arms swing naturally.'],'Builds quick sideways footwork for fielding. Go both directions.','20 m each way','warm-up'],
+  'Leg Swings':['Hamstrings, hip flexors',['Hold a wall or fence with one hand.','Swing the outside leg forward and back, keeping it fairly straight.','Let the swing get bigger each time, then switch legs.'],'Controlled swings — no jerking.','10 each leg','stretch'],
+  'Inchworm':['Hamstrings, shoulders, core',['Stand tall, bend down and put your hands on the floor.','Walk your hands forward until you are in a push-up position.','Walk your feet up to your hands and stand up.'],'Keep your legs as straight as is comfortable.','5 reps','warm-up'],
+  'Lateral Bound':['Legs, hips, balance',['Stand on your right leg in a half squat.','Push off sideways and land on your left leg.','Hold the landing for a second, then bound back.'],'Prepares you for diving and quick sideways moves. Land softly.','5 each side','warm-up'],
+  'Kneeling Forearm Stretch':['Forearms, wrists',['Kneel on all fours.','Turn your hands so fingers point back toward your knees, palms flat.','Gently lean back until you feel the stretch in your forearms.'],'Go gently — wrists are small joints.','Hold 20 sec','stretch'],
+  'Wrist Curl':['Forearms (inner), grip',['Sit with forearms on your thighs, palms up, a dumbbell in each hand.','Let the dumbbells roll down to your fingertips.','Curl your wrists up as high as you can, then lower slowly.'],'Only your wrists move; forearms stay on your legs.','3 × 15','exercise'],
+  'Reverse Wrist Curl':['Forearms (outer), wrists',['Sit with forearms on your thighs, palms down, light dumbbells.','Lower the backs of your hands toward the floor.','Lift them up as high as you can, then lower slowly.'],'Use lighter weights than for wrist curls.','3 × 15','exercise'],
+  'Wrist Roller':['Forearms, grip',['Hold the wrist roller with arms straight out in front, palms down.','Roll it with your wrists to wind the weight all the way up.','Then unroll slowly to lower it.'],'Arms stay straight and still. Your forearms will burn — that is the point.','3 up-and-down','exercise'],
+  "Farmer's Walk":['Grip, forearms, core',['Pick up a heavy dumbbell or kettlebell in each hand.','Stand tall with shoulders back.','Walk with short, quick steps.'],'Strong grip gives better bat control. Go heavy, but keep your back straight.','3 × 30 m','exercise'],
+  'Plate Pinch':['Fingers, grip',['Put two weight plates together, smooth sides out.','Pinch them together with your fingers and thumb.','Lift and hold them at your side.'],'Start with two 5 kg plates.','3 × 20 sec each hand','exercise'],
+  'Cable Wood Chop':['Core rotation, shoulders, hips',['Set the cable high and stand side-on to it, holding the handle with both hands.','Pull it down and across your body to the opposite knee, turning your hips and shoulders.','Return slowly.'],'This is the same turning action as a batting swing. Power comes from the hips.','3 × 10 each side','exercise'],
+  'Landmine Rotation':['Core rotation, shoulders',['Hold the end of a landmine bar at shoulder height, arms straight, feet wide.','Rotate the bar down to one hip, turning your body and pivoting your feet.','Swing it in an arc across to the other hip.'],'Control the bar — start light.','3 × 8 each side','exercise'],
+  'Med Ball Scoop Throw':['Hips, legs, back — explosive power',['Squat with a medicine ball held low between your feet.','Drive up hard through your legs and hips.','Swing your arms up and throw the ball up and behind you.'],'Explosive hip drive is what powers big hits. Throw in an open area.','3 × 6 throws','exercise']
+};
+const CRICKET = {
+  bat:{icon:'🏏', title:'Before batting', time:'about 8 min', note:'Get loose and warm before you face the first ball.',
+    steps:['Star Jump','Arm Circles','Wrist Circles','Shoulder Stretch',"World's Greatest Stretch",'Standing Lateral Stretch','Bodyweight Squat','Walking Lunge'],
+    finish:'Finish with 10 slow shadow drives, then 10 at full speed, then a few easy throw-downs.'},
+  field:{icon:'🧤', title:'Before fielding', time:'8–10 min', note:'Ready for quick starts, dives and throws.',
+    steps:['Fast Skipping','Carioca','Leg Swings','Inchworm','Lateral Bound','Arm Circles','Shoulder Stretch','Calf Stretch Hands Against Wall'],
+    finish:'Finish with 3 short sprints at 70–80% speed, then 10 throws that build up to full power, and some catches.'},
+  power:{icon:'💪', title:'Batting power (gym)', time:'45–60 min', note:'Stronger wrists, forearms and grip, and more power in your turn.',
+    warm:['Wrist Circles','Arm Circles',"World's Greatest Stretch",'Kneeling Forearm Stretch'],
+    steps:['Wrist Curl','Reverse Wrist Curl','Wrist Roller','Hammer Curl',"Farmer's Walk",'Plate Pinch','Cable Wood Chop','Landmine Rotation','Med Ball Scoop Throw'],
+    finish:'Do this 2–3 times a week (for example Mon, Wed, Fri), with a rest day in between. Forearms get stronger while they rest, so on the other gym days do your normal workouts.'}
+};
 const PLAN_ICON = {'Push':'🏋️','Pull':'🧗','Legs':'🦵','Full Body':'⚡'};
 const PLAN_NOTE = {
   'Push':'Chest, shoulders and triceps.',
@@ -242,18 +275,19 @@ const PLAN_NOTE = {
 let tab = 'workouts', libGroup = 'Chest';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const isStretch = n => !!STRETCH[n];
+const isStretch = n => !!STRETCH[n] || (CR[n] && CR[n][4] === 'stretch');
 const img = (n, k) => IMG[n] ? `img/${IMG[n]}-${k}.webp` : '';
 function exType(name){ for (const g in LIB) for (const [n,t] of LIB[g]) if (n === name) return t; return 'w'; }
-function groupOf(name){ for (const g in LIB) if (LIB[g].some(([n]) => n === name)) return g; return isStretch(name) ? 'Stretch' : ''; }
+function groupOf(name){ for (const g in LIB) if (LIB[g].some(([n]) => n === name)) return g; if (CR[name]) return 'Cricket'; return isStretch(name) ? 'Stretch' : ''; }
 function target(name){
-  if (isStretch(name)) return STRETCH[name][3];
+  if (CR[name]) return CR[name][3];
+  if (STRETCH[name]) return STRETCH[name][3];
   const t = exType(name), g = groupOf(name);
   if (t === 't') return g === 'Cardio' ? '15–30 min' : '3 × 30–60 sec';
   if (t === 'b') return '3 × as many as you can';
   return '3 × 8–12 reps';
 }
-function info(name){ return STRETCH[name] || HOW[name]; }
+function info(name){ return CR[name] || STRETCH[name] || HOW[name]; }
 const TYPE_LABEL = {w:'weights', b:'bodyweight', t:'timed'};
 
 /* ---------- Pieces ---------- */
@@ -291,20 +325,42 @@ function planSheet(p){
     <p class="muted small">Tap any stretch or exercise to see the animation, photos and how to do it.</p>`;
 }
 
+function viewCricket(){
+  const card = k => { const c = CRICKET[k]; const ex = c.steps.filter(n => !isStretch(n)), st = (c.warm || []).concat(c.steps.filter(isStretch));
+    return `<button class="card plan" data-act="cricket" data-v="${k}">
+      <div class="pthumbs">${(k === 'power' ? ex : c.steps).filter(n => IMG[n]).slice(0,3).map(n => thumb(n)).join('')}</div>
+      <div class="row between" style="margin-top:10px"><h3>${c.icon} ${esc(c.title)}</h3><span class="muted small">${esc(c.time)} ›</span></div>
+      <div class="muted small" style="margin-top:4px">${esc(c.note)} ${st.length} stretches · ${ex.length} exercises.</div></button>`; };
+  return header() + `<h2 style="margin-top:0">Cricket</h2>
+    <p class="muted small" style="margin:-4px 0 12px">Quick warm-ups before you bat or field, and a gym workout for more batting power.</p>
+    <div class="grp" style="margin-top:4px">On match / practice day</div>${card('bat')}${card('field')}
+    <div class="grp">At the gym</div>${card('power')}`;
+}
+function cricketSheet(k){
+  const c = CRICKET[k];
+  const body = c.warm
+    ? section('Step 1 · Warm-up stretches', 'about 5 min', c.warm, true) + section('Step 2 · Exercises', 'rest 60–90 sec between sets', c.steps, true)
+    : section('Do these in order', c.time, c.steps, true);
+  return `<div class="row between"><div><h3>${c.icon} ${esc(c.title)}</h3><div class="muted small">${esc(c.note)}</div></div><button class="btn sm" data-act="close">Close</button></div>
+    ${body}<div class="tip" style="margin-top:12px">${k === 'power' ? '📅' : '🏏'} ${esc(c.finish)}</div>
+    <p class="muted small">Tap any item to see the animation, photos and how to do it.</p>`;
+}
 function libList(q){
   q = (q||'').trim().toLowerCase();
   if (q) {
     const all = [];
     for (const g in LIB) LIB[g].forEach(([n]) => all.push(n));
     Object.keys(STRETCH).forEach(n => all.push(n));
+    Object.keys(CR).forEach(n => all.push(n));
     const hits = all.filter(n => { const h = info(n); return n.toLowerCase().includes(q) || groupOf(n).toLowerCase().includes(q) || (h && h[0].toLowerCase().includes(q)); });
     return hits.length ? `<div class="card list" style="padding:0 12px">${hits.map(n => row(n)).join('')}</div>` : '<div class="card empty">No exercise found.</div>';
   }
+  if (libGroup === 'Cricket') return ['bat','field','power'].map(k => section(CRICKET[k].icon + ' ' + CRICKET[k].title, CRICKET[k].time, (CRICKET[k].warm || []).concat(CRICKET[k].steps))).join('');
   if (libGroup === 'Stretches') return section('All stretches', Object.keys(STRETCH).length + ' stretches', Object.keys(STRETCH));
   return section('Stretch first', 'about 3 min', WARM[libGroup]) + section(libGroup + ' exercises', LIB[libGroup].length + ' exercises', LIB[libGroup].map(([n]) => n));
 }
 function viewExercises(){
-  const groups = Object.keys(LIB).concat('Stretches');
+  const groups = Object.keys(LIB).concat('Stretches', 'Cricket');
   return header() + `<h2 style="margin-top:0">Exercises</h2>
     <input id="lib-q" placeholder="Search e.g. chest, curl, stretch" autocomplete="off" style="margin-bottom:10px">
     <div class="chips" id="lib-chips">${groups.map(g => `<button class="${g === libGroup ? 'on' : ''}" data-act="libGroup" data-v="${esc(g)}">${esc(g)}</button>`).join('')}</div>
@@ -312,7 +368,7 @@ function viewExercises(){
 }
 function openInfo(name){
   const h = info(name), st = isStretch(name), back = $('#modal').dataset.back;
-  const tag = st ? 'stretch' : TYPE_LABEL[exType(name)];
+  const tag = st ? 'stretch' : CR[name] ? (CR[name][4] === 'warm-up' ? 'warm-up' : 'gym') : TYPE_LABEL[exType(name)];
   openModal(`<div class="row between"><div><h3>${esc(name)}</h3><div class="muted small">${st ? 'Warm-up stretch' : esc(groupOf(name)) + ` <span class="tag">${tag}</span>`}</div></div>
     <button class="btn sm" data-act="${back ? 'back' : 'close'}">${back ? '‹ Back' : 'Close'}</button></div>
     ${IMG[name] ? `<div class="anim" data-act="anim" role="img" aria-label="Animation of ${esc(name)}, switching between start and end position">
@@ -331,11 +387,12 @@ function openInfo(name){
 /* ---------- Shell ---------- */
 const ICONS = {
   workouts:'<path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/>',
-  exercises:'<path d="M4 5h16M4 12h16M4 19h10"/><circle cx="19" cy="19" r="2"/>'
+  exercises:'<path d="M4 5h16M4 12h16M4 19h10"/><circle cx="19" cy="19" r="2"/>',
+  cricket:'<path d="M14.5 3.5l6 6-9.5 9.5-6-6z"/><path d="M5 13l-2.5 2.5 6 6L11 19"/><circle cx="19" cy="19" r="2.2"/>'
 };
 function render(){
-  $('#app').innerHTML = tab === 'exercises' ? viewExercises() : viewWorkouts();
-  $('#nav').innerHTML = [['workouts','Workouts'],['exercises','Exercises']].map(([k,l]) =>
+  $('#app').innerHTML = tab === 'exercises' ? viewExercises() : tab === 'cricket' ? viewCricket() : viewWorkouts();
+  $('#nav').innerHTML = [['workouts','Workouts'],['cricket','Cricket'],['exercises','Exercises']].map(([k,l]) =>
     `<button class="${tab === k ? 'on' : ''}" data-act="tab" data-v="${k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>${l}</button>`).join('');
 }
 function openModal(html, back){
@@ -345,7 +402,7 @@ function openModal(html, back){
 }
 function closeModal(){ const m = $('#modal'); m.innerHTML = ''; delete m.dataset.back; }
 let lastPlan = null;
-function showPlan(p){ lastPlan = p; openModal(planSheet(p)); $('#modal').dataset.back = '1'; }
+function showPlan(p){ lastPlan = p; openModal(p.cricket ? cricketSheet(p.cricket) : planSheet(p)); $('#modal').dataset.back = '1'; }
 
 document.addEventListener('click', ev => {
   const el = ev.target.closest('[data-act]'); if (!el) return;
@@ -354,6 +411,7 @@ document.addEventListener('click', ev => {
   switch (act) {
     case 'tab': tab = v; closeModal(); render(); window.scrollTo(0,0); break;
     case 'plan': showPlan({title:(PLAN_ICON[v] || '') + ' ' + v, note:PLAN_NOTE[v] || '', warm:PLAN_WARM[v], names:TEMPLATES[v]}); break;
+    case 'cricket': lastPlan = {cricket:v}; openModal(cricketSheet(v)); $('#modal').dataset.back = '1'; break;
     case 'groupDay': showPlan({title:v + ' Day', note:'Do the stretches, then pick 4–5 of these exercises for one session.', warm:WARM[v], names:LIB[v].map(([n]) => n)}); break;
     case 'info': if (!$('#modal').innerHTML) delete $('#modal').dataset.back; openInfo(v); break;
     case 'back': lastPlan ? showPlan(lastPlan) : closeModal(); break;
